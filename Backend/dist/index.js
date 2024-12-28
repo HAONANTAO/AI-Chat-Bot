@@ -1,5 +1,6 @@
-console.log(
-  "This is a testing starter kit for this amazing AI-ChatBot project!!!",
-);
-export {};
+import express from "express";
+const app = express();
+app.listen(3000, () => {
+    console.log("listening the port 3000!");
+});
 //# sourceMappingURL=index.js.map

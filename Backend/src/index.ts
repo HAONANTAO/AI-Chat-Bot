@@ -1,3 +1,7 @@
-console.log(
-  "This is a starter kit for this amazing project. With 💓 By Indian Coders"
-);
+import express from "express";
+
+const app = express();
+
+app.listen(3000, () => {
+  console.log("listening the port 3000!");
+});
