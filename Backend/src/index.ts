@@ -1,5 +1,5 @@
 import express from "express";
-
+import { config } from "dotenv";
 // 创建app
 const app = express();
 
@@ -14,5 +14,3 @@ app.use(express.urlencoded({ extended: true }));
 app.listen(3000, () => {
   console.log("listening the port 3000!");
 });
-
-// mongodb+srv://Aaron1314:<db_password>@cluster0.p1ulw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
