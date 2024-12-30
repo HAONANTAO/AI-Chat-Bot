@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import bcrypt, { hash } from "bcrypt";
+import { hash, compare } from "bcrypt";
 export const getAllUser = async (req, res, next) => {
     try {
         //getall users 通过model去数据库找
@@ -41,17 +41,15 @@ export const userLogin = async (req, res, next) => {
         const { email, password } = req.body;
         const existedUser = await User.findOne({ email });
         if (!existedUser)
-            return res.status(201).json("not found this user,please check again ");
-        bcrypt.compare(password, existedUser.password, (err, result) => {
-            if (err) {
-                return res.status(400).json({ message: "password is not corrected" });
-            }
-            else {
-                return res
-                    .status(201)
-                    .json({ message: `find the user:${existedUser.name} and login` });
-            }
-        });
+            return res.status(201).json("user not registered ,please check again ");
+        // result是boolean(true) check password
+        const isPasswordCorrected = await compare(password, existedUser.password);
+        if (isPasswordCorrected) {
+            return res
+                .status(200)
+                .json({ message: `user ${existedUser.name} log in successfully!` });
+        }
+        return res.status(403).json({ message: "Incorrect password" });
     }
     catch (error) {
         return res
