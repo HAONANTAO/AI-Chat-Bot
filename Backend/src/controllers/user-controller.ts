@@ -26,14 +26,16 @@ export const userSignup = async (
   try {
     const { name, email, password } = req.body;
     const hashedPassword = await hash(password, 10);
+    // store into User database
+
     const user = new User({
       name,
       email,
       password: hashedPassword,
     });
-    // store into User database
-    await user.save();
 
+    await user.save();
+    // await User.create(user);
     return res
       .status(200)
       .json({ message: "signup works!", id: user.id.toString() });
