@@ -1,6 +1,6 @@
 import User from "../models/User.js";
-import { NextFunction, Request, Response } from "express";
-import { hash } from "bcrypt";
+import e, { NextFunction, Request, Response } from "express";
+import bcrypt, { hash } from "bcrypt";
 export const getAllUser = async (
   req: Request,
   res: Response,
@@ -45,5 +45,28 @@ export const userSignup = async (
       .json({ message: "error! signup not work!", cause: error.message });
   }
 };
+export const userLogin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    // 没有名字
+    const { email, password } = req.body;
 
-export const userLogin = () => {};
+    const existedUser = await User.findOne({ email });
+    bcrypt.compare(password, existedUser.password, (err, result) => {
+      if (err) {
+        return res.status(400).json({ message: "password is not corrected" });
+      } else {
+        return res
+          .status(201)
+          .json({ message: "find the user and login", name: existedUser.name });
+      }
+    });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: "error! signup not work!", cause: error.message });
+  }
+};

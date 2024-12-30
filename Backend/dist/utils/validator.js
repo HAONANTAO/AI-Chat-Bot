@@ -20,15 +20,8 @@ export const validate = (validations) => {
         // have error有
     };
 };
-// signup单独的检查器
-export const signupValidator = [
-    body("name")
-        .notEmpty()
-        .withMessage("Name cannot be empty")
-        // bail() 方法原理：当把 bail() 加在两个验证方法之间时，一旦前一个验证失败，后续链式连接的验证方法就不再执行
-        .bail()
-        .isLength({ max: 30 })
-        .withMessage("Name should be at most 30 characters"),
+// login 验证器
+export const loginValidator = [
     body("email")
         .trim()
         .notEmpty()
@@ -44,5 +37,15 @@ export const signupValidator = [
         .notEmpty()
         .withMessage("Password cannot be empty"),
 ];
-export const loginValidator = [];
+// signup单独的检查器
+export const signupValidator = [
+    body("name")
+        .notEmpty()
+        .withMessage("Name cannot be empty")
+        // bail() 方法原理：当把 bail() 加在两个验证方法之间时，一旦前一个验证失败，后续链式连接的验证方法就不再执行
+        .bail()
+        .isLength({ max: 30 })
+        .withMessage("Name should be at most 30 characters"),
+    ...loginValidator,
+];
 //# sourceMappingURL=validator.js.map

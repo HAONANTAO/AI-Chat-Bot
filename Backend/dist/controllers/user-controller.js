@@ -1,5 +1,5 @@
 import User from "../models/User.js";
-import { hash } from "bcrypt";
+import bcrypt, { hash } from "bcrypt";
 export const getAllUser = async (req, res, next) => {
     try {
         //getall users 通过model去数据库找
@@ -35,5 +35,26 @@ export const userSignup = async (req, res, next) => {
             .json({ message: "error! signup not work!", cause: error.message });
     }
 };
-export const userLogin = () => { };
+export const userLogin = async (req, res, next) => {
+    try {
+        // 没有名字
+        const { email, password } = req.body;
+        const existedUser = await User.findOne({ email });
+        bcrypt.compare(password, existedUser.password, (err, result) => {
+            if (err) {
+                return res.status(400).json({ message: "password is not corrected" });
+            }
+            else {
+                return res
+                    .status(201)
+                    .json({ message: "find the user and login", name: existedUser.name });
+            }
+        });
+    }
+    catch (error) {
+        return res
+            .status(400)
+            .json({ message: "error! signup not work!", cause: error.message });
+    }
+};
 //# sourceMappingURL=user-controller.js.map
