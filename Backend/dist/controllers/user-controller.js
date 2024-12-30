@@ -30,7 +30,6 @@ export const userSignup = async (req, res, next) => {
             .json({ message: "signup works!", id: user.id.toString() });
     }
     catch (error) {
-        console.log(error);
         return res
             .status(400)
             .json({ message: "error! signup not work!", cause: error.message });

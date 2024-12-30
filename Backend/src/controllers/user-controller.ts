@@ -40,7 +40,6 @@ export const userSignup = async (
       .status(200)
       .json({ message: "signup works!", id: user.id.toString() });
   } catch (error) {
-    console.log(error);
     return res
       .status(400)
       .json({ message: "error! signup not work!", cause: error.message });

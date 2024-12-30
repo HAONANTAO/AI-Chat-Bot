@@ -15,9 +15,10 @@ export const validate = (validations: ValidationChain[]) => {
     if (errors.isEmpty()) {
       // 没有error就继续运行下一个
       next();
+    } else {
+      return res.status(422).json({ errors: errors.array() });
     }
     // have error有
-    return res.status(422).json({ errors: errors.array() });
   };
 };
 // signup单独的检查器
