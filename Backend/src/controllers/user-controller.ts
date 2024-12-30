@@ -1,1 +1,4 @@
-export const getAllUser = () => {};
+export const getAllUser = () => {
+//ge
+
+};
