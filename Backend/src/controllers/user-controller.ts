@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import { NextFunction, Request, Response } from "express";
-import bcrypt, { hash } from "bcrypt";
+import { hash } from "bcrypt";
 export const getAllUser = async (
   req: Request,
   res: Response,
