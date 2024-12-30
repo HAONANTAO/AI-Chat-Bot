@@ -1,5 +1,7 @@
 import app from "./app.js";
 import { connectedToDatabase, disconnectToDatabase } from "./db/connection.js";
+
+
 // connections and listeners
 
 const port = process.env.PORT || 3000;
