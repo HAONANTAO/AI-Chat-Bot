@@ -20,12 +20,26 @@ export const validate = (validations) => {
 };
 // signup单独的检查器
 export const signupValidator = [
-    body("name").notEmpty().withMessage("name is required"),
-    body("email").trim().isEmail().withMessage("email is required"),
+    body("name")
+        .notEmpty()
+        .withMessage("Name cannot be empty")
+        // bail() 方法原理：当把 bail() 加在两个验证方法之间时，一旦前一个验证失败，后续链式连接的验证方法就不再执行
+        .bail()
+        .isLength({ max: 30 })
+        .withMessage("Name should be at most 30 characters"),
+    body("email")
+        .trim()
+        .notEmpty()
+        .withMessage("Name cannot be empty")
+        .bail()
+        .isEmail()
+        .withMessage("Please enter a valid email address"),
     body("password")
         .trim()
         .isLength({ min: 6 })
+        .withMessage("Password must be at least 6 characters long")
+        .bail()
         .notEmpty()
-        .withMessage("password is required"),
+        .withMessage("Password cannot be empty"),
 ];
 //# sourceMappingURL=validator.js.map
