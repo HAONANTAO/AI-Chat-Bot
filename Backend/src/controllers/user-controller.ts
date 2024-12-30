@@ -1,4 +1,3 @@
 export const getAllUser = () => {
-//ge
-
+  //getall users
 };
