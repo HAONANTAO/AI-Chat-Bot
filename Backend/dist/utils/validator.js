@@ -44,4 +44,5 @@ export const signupValidator = [
         .notEmpty()
         .withMessage("Password cannot be empty"),
 ];
+export const loginValidator = [];
 //# sourceMappingURL=validator.js.map

@@ -37,7 +37,7 @@ export const userSignup = async (
     await user.save();
     // await User.create(user);
     return res
-      .status(200)
+      .status(201)
       .json({ message: "signup works!", id: user.id.toString() });
   } catch (error) {
     return res
@@ -45,3 +45,5 @@ export const userSignup = async (
       .json({ message: "error! signup not work!", cause: error.message });
   }
 };
+
+export const userLogin = () => {};

@@ -26,7 +26,7 @@ export const userSignup = async (req, res, next) => {
         await user.save();
         // await User.create(user);
         return res
-            .status(200)
+            .status(201)
             .json({ message: "signup works!", id: user.id.toString() });
     }
     catch (error) {
@@ -35,4 +35,5 @@ export const userSignup = async (req, res, next) => {
             .json({ message: "error! signup not work!", cause: error.message });
     }
 };
+export const userLogin = () => { };
 //# sourceMappingURL=user-controller.js.map
