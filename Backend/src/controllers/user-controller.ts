@@ -55,13 +55,15 @@ export const userLogin = async (
     const { email, password } = req.body;
 
     const existedUser = await User.findOne({ email });
+    if (!existedUser)
+      return res.status(201).json("not found this user,please check again ");
     bcrypt.compare(password, existedUser.password, (err, result) => {
       if (err) {
         return res.status(400).json({ message: "password is not corrected" });
       } else {
         return res
           .status(201)
-          .json({ message: "find the user and login", name: existedUser.name });
+          .json({ message: `find the user:${existedUser.name} and login` });
       }
     });
   } catch (error) {
