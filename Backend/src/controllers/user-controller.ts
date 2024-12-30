@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import { NextFunction, Request, Response } from "express";
+import bcrypt, { hash } from "bcrypt";
 export const getAllUser = async (
   req: Request,
   res: Response,
@@ -23,12 +24,23 @@ export const userSignup = async (
   next: NextFunction,
 ) => {
   try {
-    const users = await User.find();
-    return res.status(200).json({ message: "OK", users });
+    const { name, email, password } = req.body;
+    const hashedPassword = await hash(password, 10);
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+    });
+    // store into User database
+    await user.save();
+
+    return res
+      .status(200)
+      .json({ message: "signup works!", id: user.id.toString() });
   } catch (error) {
     console.log(error);
     return res
       .status(400)
-      .json({ message: "error! not ok!", cause: error.message });
+      .json({ message: "error! signup not work!", cause: error.message });
   }
 };

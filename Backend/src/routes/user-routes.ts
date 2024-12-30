@@ -3,5 +3,5 @@ import { getAllUser, userSignup } from "../controllers/user-controller.js";
 
 const userRoutes = Router();
 userRoutes.get("/", getAllUser);
-userRoutes.get("/signup", userSignup);
+userRoutes.post("/signup", userSignup);
 export default userRoutes;
