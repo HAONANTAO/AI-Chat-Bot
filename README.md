@@ -1,5 +1,6 @@
 # AI-Chat-Bot
-# 聊天机器人 MERN chatgpt模拟器
+
+# 聊天机器人 MERN chatgpt 模拟器
 
 ## 技术栈
 
@@ -17,25 +18,20 @@ nodejs express 后端
 
 RESTFUL api
 
-mongodb数据库
+mongodb 数据库
 
-前段V
+前端 Vite
 
 密码验证 JWT HTTP-ONLY COOKIES VALIDATION
 
 不同中间件验证路由
 
-matrialUI库
+matrialUI 库
 
 react
 
 context api
 
-
-
 ## **项目介绍**
 
-a modern ai project which will use OpenaAI API to create an AI real-time chatbot similar to ChatGPT. The application stores User's Chats  In a Database to keep track of conversations,but a user can delete them anytime. Then UI  is capable of showing code blocks if requested by the user
-
-
-
+a modern ai project which will use OpenaAI API to create an AI real-time chatbot similar to ChatGPT. The application stores User's Chats In a Database to keep track of conversations,but a user can delete them anytime. Then UI is capable of showing code blocks if requested by the user
