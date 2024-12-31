@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import e, { NextFunction, Request, Response } from "express";
 import { hash, compare } from "bcrypt";
+import { createToken } from "../utils/token-managet.js";
 export const getAllUser = async (
   req: Request,
   res: Response,
@@ -59,12 +60,32 @@ export const userLogin = async (
       return res.status(201).json("user not registered ,please check again ");
     // result是boolean(true) check password
     const isPasswordCorrected = await compare(password, existedUser.password);
-    if (isPasswordCorrected) {
-      return res
-        .status(200)
-        .json({ message: `user ${existedUser.name} log in successfully!` });
+    if (!isPasswordCorrected) {
+      return res.status(403).json({ message: "Incorrect password" });
     }
-    return res.status(403).json({ message: "Incorrect password" });
+    // password is corrected
+    const token = createToken(
+      existedUser.id.toString(),
+      existedUser.email,
+      "7d",
+    );
+    // send the token to cookie
+
+    // 7 days set up
+    const expires = new Date();
+    expires.setDate(expires.getDate() + 7);
+    // update later!!
+    res.cookie("auth_token", token, {
+      path: "/",
+      domain: "localhost",
+      expires,
+      httpOnly: true,
+      signed: true,
+    });
+    // end
+    return res
+      .status(200)
+      .json({ message: `user ${existedUser.name} log in successfully!` });
   } catch (error) {
     return res
       .status(400)

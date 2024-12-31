@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 
-export const createToken = (id: string, email: string, expiresIn:) => {
+export const createToken = (id: string, email: string, expiresIn: string) => {
   const payload = { id, email };
   // JWT sign
-  const token = jwt.sign(payload, process.env.JWT_SECRET,{
-    expiresIn:"7d"
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn,
   });
-  return token
+  return token;
 };

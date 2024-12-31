@@ -3,6 +3,7 @@ import express from "express";
 import { config } from "dotenv";
 import morgan from "morgan";
 import appRouter from "./routes/index.js";
+import cookieParser from "cookie-parser";
 
 config();
 // 创建app
@@ -14,6 +15,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 // 配置用于解析 application/x-www-form-urlencoded 格式数据的中间件（表单数据）
 app.use(express.urlencoded({ extended: true }));
-
+// 解析cookies,加密
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use("/api/v1", appRouter);
 export default app;
