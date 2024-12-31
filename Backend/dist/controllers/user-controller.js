@@ -2,6 +2,11 @@ import User from "../models/User.js";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../utils/token-managet.js";
 import { COOKIE_NAME } from "../utils/constants.js";
+// 通用错误处理函数
+const handleError = (res, error) => {
+    console.log(error);
+    res.status(500).json({ message: "An error occurred", cause: error.message });
+};
 export const getAllUser = async (req, res, next) => {
     try {
         //getall users 通过model去数据库找

@@ -3,6 +3,13 @@ import e, { NextFunction, Request, Response } from "express";
 import { hash, compare } from "bcrypt";
 import { createToken } from "../utils/token-managet.js";
 import { COOKIE_NAME } from "../utils/constants.js";
+
+// 通用错误处理函数
+const handleError = (res: Response, error: any) => {
+  console.log(error);
+  res.status(500).json({ message: "An error occurred", cause: error.message });
+};
+
 export const getAllUser = async (
   req: Request,
   res: Response,
