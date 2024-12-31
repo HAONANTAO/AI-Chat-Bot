@@ -6,6 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
 
 const theme = createTheme({
+  // text文本显示
   typography: {
     fontFamily: "Work Sans,serif",
     allVariants: { color: "white" },

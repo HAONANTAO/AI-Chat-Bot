@@ -10,3 +10,26 @@ body {
   color: white;
   font-family: "Work Sans", serif;
 }
+/* 清除浮动 */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+/* 去掉列表默认样式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 去掉链接默认下划线 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* headers component */
+/* 元素呈现出反色效果 */
+.image-inverted {
+  filter: invert(100%);
+}
