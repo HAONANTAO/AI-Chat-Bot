@@ -5,7 +5,8 @@ import {
   useEffect,
   useState,
 } from "react";
-
+import React from "react";
+// 其他导入保持不变
 type User = {
   name: string;
   email: string;
@@ -17,7 +18,9 @@ type UserAuth = {
   signup: (name: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 };
+
 const AuthContext = createContext<UserAuth | null>(null);
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,4 +42,5 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuth = useContext(AuthContext);
+// use context
+export const useAuth = () => useContext(AuthContext);
