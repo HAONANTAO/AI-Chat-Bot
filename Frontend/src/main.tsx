@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext.ts";
+import { AuthProvider } from "./context/AuthContext.tsx";
 
 const theme = createTheme({
   // text文本显示
