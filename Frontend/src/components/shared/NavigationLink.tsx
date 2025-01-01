@@ -8,13 +8,13 @@ type Props = {
   textColor: string;
   onClick?: () => Promise<void>;
 };
-const NavigationLink = (Props: Props) => {
+const NavigationLink = (props: Props) => {
   return (
     <Link
       className="navlink"
-      to={Props.to}
-      style={{ background: Props.bg, color: Props.textColor }}>
-      {Props.text}
+      to={props.to}
+      style={{ background: props.bg, color: props.textColor }}>
+      {props.text}
     </Link>
   );
 };

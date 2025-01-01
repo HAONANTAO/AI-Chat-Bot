@@ -1,5 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
+import CustomisedInput from "../components/shared/CustomisedInput";
+import height from "../../node_modules/dom-helpers/esm/height";
 
 const Login = () => {
   return (
@@ -22,7 +24,7 @@ const Login = () => {
           alignContent={"center"}
           padding={2}
           ml="auto"
-          mt={16}>
+          mt={10}>
           {/* 表单 */}
           <form
             action=""
@@ -38,15 +40,22 @@ const Login = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
+                height: "300px",
               }}>
               {/* 文字 */}
               <Typography
-                variant="h4"
+                variant="h3"
                 textAlign={"center"}
                 padding="2"
-                fontWeight={"600"}>
+                fontWeight={"800"}>
                 Login
               </Typography>
+              <CustomisedInput type="email" name="email" label="Email" />
+              <CustomisedInput
+                type="password"
+                name="password"
+                label="Password"
+              />
             </Box>
           </form>
         </Box>
