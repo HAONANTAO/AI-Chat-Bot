@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import React from "react";
+
 // 其他导入保持不变
 type User = {
   name: string;
