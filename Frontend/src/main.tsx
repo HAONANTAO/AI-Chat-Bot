@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.ts";
 
 const theme = createTheme({
   // text文本显示
@@ -14,10 +15,12 @@ const theme = createTheme({
 });
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AuthProvider>
   </StrictMode>,
 );
