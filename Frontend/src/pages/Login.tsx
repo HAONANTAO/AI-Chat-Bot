@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import CustomisedInput from "../components/shared/CustomisedInput";
-import height from "../../node_modules/dom-helpers/esm/height";
 
 const Login = () => {
   return (
